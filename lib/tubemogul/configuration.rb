@@ -1,10 +1,10 @@
 require 'faraday'
 require File.expand_path('../version', __FILE__)
 
-module Instagram
+module TubeMogul
   # Defines constants and methods related to configuration
   module Configuration
-    # An array of valid keys in the options hash when configuring a {Instagram::API}
+    # An array of valid keys in the options hash when configuring a {TubeMogul::API}
     VALID_OPTIONS_KEYS = [
       :access_token,
       :adapter,
@@ -66,7 +66,7 @@ module Instagram
     DEFAULT_NO_RESPONSE_WRAPPER = false
 
     # The user agent that will be sent to the API endpoint if none is set
-    DEFAULT_USER_AGENT = "Instagram Ruby Gem #{Instagram::VERSION}".freeze
+    DEFAULT_USER_AGENT = "TubeMogul Ruby Gem #{TubeMogul::VERSION}".freeze
 
     # An array of valid request/response formats
     #

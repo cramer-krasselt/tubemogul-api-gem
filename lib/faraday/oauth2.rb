@@ -1,10 +1,13 @@
 require 'faraday'
+require 'base64'
 
 # @private
 module FaradayMiddleware
   # @private
-  class InstagramOAuth2 < Faraday::Middleware
+  class TubeMogulOAuth2 < Faraday::Middleware
     def call(env)
+
+      # TODO: if @access_token expired, refresh
 
       if env[:method] == :get or env[:method] == :delete
         if env[:url].query.nil?
@@ -15,7 +18,7 @@ module FaradayMiddleware
 
         if @access_token and not query["client_secret"]
           env[:url].query = Faraday::Utils.build_query(query.merge(:access_token => @access_token))
-          env[:request_headers] = env[:request_headers].merge('Authorization' => "Token token=\"#{@access_token}\"")
+          env[:request_headers] = env[:request_headers].merge('Authorization' => "Bearer #{@access_token}")
         elsif @client_id
           env[:url].query = Faraday::Utils.build_query(query.merge(:client_id => @client_id))
         end
@@ -23,8 +26,11 @@ module FaradayMiddleware
         if @access_token and not env[:body] && env[:body][:client_secret]
           env[:body] = {} if env[:body].nil?
           env[:body] = env[:body].merge(:access_token => @access_token)
-          env[:request_headers] = env[:request_headers].merge('Authorization' => "Token token=\"#{@access_token}\"")
-        elsif @client_id
+          env[:request_headers] = env[:request_headers].merge('Authorization' => "Bearer #{@access_token}")
+        elsif @client_id && @client_secret
+          # POST to oauth/token
+          base64basic = Base64.strict_encode64("#{@client_id":#{@client_secret}")
+          env[:request_headers] = env[:request_headers].merge('Authorization' => "Basic #{base64basic}")
           env[:body] = env[:body].merge(:client_id => @client_id)
         end
       end
@@ -33,9 +39,10 @@ module FaradayMiddleware
       @app.call env
     end
 
-    def initialize(app, client_id, access_token=nil)
+    def initialize(app, client_id, client_secret, access_token=nil)
       @app = app
       @client_id = client_id
+      @client_secret = client_secret
       @access_token = access_token
     end
   end

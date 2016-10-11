@@ -8,19 +8,19 @@ module FaradayMiddleware
       @app.call(env).on_complete do |response|
         case response[:status].to_i
         when 400
-          raise Instagram::BadRequest, error_message_400(response)
+          raise TubeMogul::BadRequest, error_message_400(response)
         when 404
-          raise Instagram::NotFound, error_message_400(response)
+          raise TubeMogul::NotFound, error_message_400(response)
         when 429
-          raise Instagram::TooManyRequests, error_message_400(response)
+          raise TubeMogul::TooManyRequests, error_message_400(response)
         when 500
-          raise Instagram::InternalServerError, error_message_500(response, "Something is technically wrong.")
+          raise TubeMogul::InternalServerError, error_message_500(response, "Something is technically wrong.")
         when 502
-          raise Instagram::BadGateway, error_message_500(response, "The server returned an invalid or incomplete response.")
+          raise TubeMogul::BadGateway, error_message_500(response, "The server returned an invalid or incomplete response.")
         when 503
-          raise Instagram::ServiceUnavailable, error_message_500(response, "Instagram is rate limiting your requests.")
+          raise TubeMogul::ServiceUnavailable, error_message_500(response, "TubeMogul is rate limiting your requests.")
         when 504
-          raise Instagram::GatewayTimeout, error_message_500(response, "504 Gateway Time-out")
+          raise TubeMogul::GatewayTimeout, error_message_500(response, "504 Gateway Time-out")
         end
       end
     end

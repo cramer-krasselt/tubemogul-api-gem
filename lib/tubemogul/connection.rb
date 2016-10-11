@@ -1,7 +1,7 @@
 require 'faraday_middleware'
 Dir[File.expand_path('../../faraday/*.rb', __FILE__)].each{|f| require f}
 
-module Instagram
+module TubeMogul
   # @private
   module Connection
     private
@@ -14,7 +14,7 @@ module Instagram
       }.merge(connection_options)
 
       Faraday::Connection.new(options) do |connection|
-        connection.use FaradayMiddleware::InstagramOAuth2, client_id, access_token
+        connection.use FaradayMiddleware::TubeMogulOAuth2, client_id, client_secret, access_token
         connection.use Faraday::Request::UrlEncoded
         connection.use FaradayMiddleware::Mashify unless raw
         unless raw

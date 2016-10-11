@@ -1,4 +1,4 @@
-module Instagram
+module TubeMogul
   # Defines HTTP request methods
   module OAuth
     # Return URL for OAuth authorization
@@ -12,10 +12,10 @@ module Instagram
 
     # Return an access token from authorization
     def get_access_token(code, options={})
-      options[:grant_type] ||= "authorization_code"
+      options[:grant_type] ||= "client_credentials"
       options[:redirect_uri] ||= self.redirect_uri
       params = access_token_params.merge(options)
-      post("/oauth/access_token/", params.merge(:code => code), signature=false, raw=false, unformatted=true, no_response_wrapper=true)
+      post("/oauth/token/", params.merge(:code => code), signature=false, raw=false, unformatted=true, no_response_wrapper=true)
     end
 
     private

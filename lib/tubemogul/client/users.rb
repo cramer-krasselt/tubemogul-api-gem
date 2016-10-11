@@ -1,4 +1,4 @@
-module Instagram
+module TubeMogul
   class Client
     # Defines methods related to users
     module Users

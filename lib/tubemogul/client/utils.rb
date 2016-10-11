@@ -1,4 +1,4 @@
-module Instagram
+module TubeMogul
   class Client
     # @private
     module Utils
