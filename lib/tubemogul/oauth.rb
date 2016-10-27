@@ -11,11 +11,11 @@ module TubeMogul
     end
 
     # Return an access token from authorization
-    def get_access_token(code, options={})
+    def get_access_token(options={})
       options[:grant_type] ||= "client_credentials"
       options[:redirect_uri] ||= self.redirect_uri
       params = access_token_params.merge(options)
-      post("/oauth/token/", params.merge(:code => code), signature=false, raw=false, unformatted=true, no_response_wrapper=true)
+      post("/oauth/token/", params, signature=false, raw=false, unformatted=true, no_response_wrapper=true)
     end
 
     private

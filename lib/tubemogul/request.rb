@@ -1,5 +1,6 @@
 require 'openssl'
 require 'base64'
+require 'pry'
 
 module TubeMogul
   # Defines HTTP request methods
@@ -48,6 +49,7 @@ module TubeMogul
           request.body = options unless options.empty?
         end
       end
+      binding.pry
       return response if raw
       return response.body if no_response_wrapper
       return Response.create( response.body, {:limit => response.headers['x-ratelimit-limit'].to_i,

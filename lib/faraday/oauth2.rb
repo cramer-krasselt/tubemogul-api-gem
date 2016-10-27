@@ -29,7 +29,7 @@ module FaradayMiddleware
           env[:request_headers] = env[:request_headers].merge('Authorization' => "Bearer #{@access_token}")
         elsif @client_id && @client_secret
           # POST to oauth/token
-          base64basic = Base64.strict_encode64("#{@client_id":#{@client_secret}")
+          base64basic = Base64.strict_encode64("#{@client_id}:#{@client_secret}")
           env[:request_headers] = env[:request_headers].merge('Authorization' => "Basic #{base64basic}")
           env[:body] = env[:body].merge(:client_id => @client_id)
         end
