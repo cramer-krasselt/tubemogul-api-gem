@@ -13,7 +13,7 @@ module TubeMogul
     include TubeMogul::Client::Locations
     include TubeMogul::Client::Geographies
     include TubeMogul::Client::Tags
-    include TubeMogul::Client::Comments
+    include TubeMogul::Client::Campaigns
     include TubeMogul::Client::Likes
     include TubeMogul::Client::Subscriptions
     include TubeMogul::Client::Embedding

@@ -15,7 +15,7 @@ module TubeMogul
       options[:grant_type] ||= "client_credentials"
       options[:redirect_uri] ||= self.redirect_uri
       params = access_token_params.merge(options)
-      post("/oauth/token/", params, signature=false, raw=false, unformatted=true, no_response_wrapper=true)
+      post("/oauth/token/", params, signature=false, raw=false, no_response_wrapper=true)
     end
 
     private
