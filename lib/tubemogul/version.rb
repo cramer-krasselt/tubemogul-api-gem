@@ -1,3 +1,3 @@
 module TubeMogul
-  VERSION = '1.1.6'.freeze unless defined?(::TubeMogul::VERSION)
+  VERSION = '0.0.1'.freeze unless defined?(::TubeMogul::VERSION)
 end
