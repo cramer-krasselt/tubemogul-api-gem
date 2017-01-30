@@ -1,4 +1,5 @@
 require 'faraday'
+require 'thread'
 require File.expand_path('../version', __FILE__)
 
 module TubeMogul
@@ -6,6 +7,8 @@ module TubeMogul
   module Configuration
     # An array of valid keys in the options hash when configuring a {TubeMogul::API}
     VALID_OPTIONS_KEYS = [
+      :access_mutex,
+      :access_expiry,
       :access_token,
       :adapter,
       :client_id,
@@ -25,6 +28,8 @@ module TubeMogul
 
     # By default, don't set a user access token
     DEFAULT_ACCESS_TOKEN = nil
+
+    DEFAULT_ACCESS_EXPIRY = Time.now
 
     # The adapter that will be used to connect if none is set
     #
@@ -109,6 +114,7 @@ module TubeMogul
     # Reset all configuration options to defaults
     def reset
       self.access_token       = DEFAULT_ACCESS_TOKEN
+      self.access_expiry      = DEFAULT_ACCESS_EXPIRY
       self.adapter            = DEFAULT_ADAPTER
       self.client_id          = DEFAULT_CLIENT_ID
       self.client_secret      = DEFAULT_CLIENT_SECRET
