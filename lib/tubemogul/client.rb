@@ -6,16 +6,7 @@ module TubeMogul
   class Client < API
     Dir[File.expand_path('../client/*.rb', __FILE__)].each{|f| require f}
 
-    include TubeMogul::Client::Utils
-
-    include TubeMogul::Client::Users
-    include TubeMogul::Client::Media
-    include TubeMogul::Client::Locations
-    include TubeMogul::Client::Geographies
-    include TubeMogul::Client::Tags
     include TubeMogul::Client::Campaigns
-    include TubeMogul::Client::Likes
-    include TubeMogul::Client::Subscriptions
-    include TubeMogul::Client::Embedding
+    include TubeMogul::Client::Ads
   end
 end
