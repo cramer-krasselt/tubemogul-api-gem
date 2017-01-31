@@ -5,7 +5,9 @@ module TubeMogul
       def advertisers(advertiser_name = nil,
                       advertiser_domain = nil,
                       product_category_id = nil,
-                      status = nil)
+                      status = nil,
+                      offset = 0,
+                      limit = Configuration::DEFAULT_PAGINATION_LIMIT)
 
         options = { }
 
