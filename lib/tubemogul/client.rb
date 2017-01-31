@@ -8,5 +8,6 @@ module TubeMogul
 
     include TubeMogul::Client::Campaigns
     include TubeMogul::Client::Ads
+    include TubeMogul::Client::Advertisers
   end
 end
