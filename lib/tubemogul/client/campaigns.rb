@@ -5,7 +5,8 @@ module TubeMogul
                     campaign_name = nil,
                     customer_order_number = nil,
                     status = nil,
-                    limit = nil,
+                    offset = 0,
+                    limit = Configuration::DEFAULT_PAGINATION_LIMIT,
                     sort_by = nil)
         options = {}
         # Optionals
@@ -14,6 +15,7 @@ module TubeMogul
         options.merge!(customer_order_number: customer_order_number) if customer_order_number
         options.merge!(status: status) if status
         options.merge!(limit: limit) if limit
+        options.merge!(offset: offset) if offset
         options.merge!(sort_by: sort_by) if sort_by
 
         get(Configuration::TRAFFICKING_API_PREFIX + "trafficking/campaigns", options)
@@ -27,8 +29,8 @@ module TubeMogul
                        start_day,
                        end_day,
                        timezone = Configuration::DEFAULT_TIMEZONE,
-                       offset = nil,
-                       limit = nil,
+                       offset = 0,
+                       limit = Configuration::DEFAULT_PAGINATION_LIMIT,
                        sort = nil,
                        order = nil)
 

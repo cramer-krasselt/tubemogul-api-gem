@@ -9,6 +9,7 @@ module TubeMogul
     VALID_OPTIONS_KEYS = [
       :access_mutex,
       :access_expiry,
+      :access_expiry_ahead,
       :access_token,
       :adapter,
       :client_id,
@@ -30,6 +31,9 @@ module TubeMogul
     DEFAULT_ACCESS_TOKEN = nil
 
     DEFAULT_ACCESS_EXPIRY = Time.now
+
+    # Mark token as expired N seconds before #access_expiry
+    DEFAULT_ACCESS_EXPIRY_AHEAD = 30
 
     # The adapter that will be used to connect if none is set
     #
@@ -58,6 +62,8 @@ module TubeMogul
     REPORTING_API_PREFIX = "v1/"
 
     DEFAULT_TIMEZONE = 'America/Chicago'
+
+    DEFAULT_PAGINATION_LIMIT = 50
 
     # The response format appended to the path and sent in the 'Accept' header if none is set
     #
@@ -104,6 +110,11 @@ module TubeMogul
       yield self
     end
 
+    # Note: relies on server time
+    def token_expired?
+      (self.access_expiry - self.access_expiry_ahead) < Time.now
+    end
+
     # Create a hash of options and their values
     def options
       VALID_OPTIONS_KEYS.inject({}) do |option, key|
@@ -113,22 +124,23 @@ module TubeMogul
 
     # Reset all configuration options to defaults
     def reset
-      self.access_token       = DEFAULT_ACCESS_TOKEN
-      self.access_expiry      = DEFAULT_ACCESS_EXPIRY
-      self.adapter            = DEFAULT_ADAPTER
-      self.client_id          = DEFAULT_CLIENT_ID
-      self.client_secret      = DEFAULT_CLIENT_SECRET
-      self.client_ips         = DEFAULT_CLIENT_IPS
-      self.connection_options = DEFAULT_CONNECTION_OPTIONS
-      self.scope              = DEFAULT_SCOPE
-      self.redirect_uri       = DEFAULT_REDIRECT_URI
-      self.endpoint           = DEFAULT_ENDPOINT
-      self.format             = DEFAULT_FORMAT
-      self.proxy              = DEFAULT_PROXY
-      self.user_agent         = DEFAULT_USER_AGENT
-      self.no_response_wrapper= DEFAULT_NO_RESPONSE_WRAPPER
-      self.loud_logger        = DEFAULT_LOUD_LOGGER
-      self.sign_requests      = DEFAULT_SIGN_REQUESTS
+      self.access_token         = DEFAULT_ACCESS_TOKEN
+      self.access_expiry        = DEFAULT_ACCESS_EXPIRY
+      self.access_expiry_ahead  = DEFAULT_ACCESS_EXPIRY_AHEAD
+      self.adapter              = DEFAULT_ADAPTER
+      self.client_id            = DEFAULT_CLIENT_ID
+      self.client_secret        = DEFAULT_CLIENT_SECRET
+      self.client_ips           = DEFAULT_CLIENT_IPS
+      self.connection_options   = DEFAULT_CONNECTION_OPTIONS
+      self.scope                = DEFAULT_SCOPE
+      self.redirect_uri         = DEFAULT_REDIRECT_URI
+      self.endpoint             = DEFAULT_ENDPOINT
+      self.format               = DEFAULT_FORMAT
+      self.proxy                = DEFAULT_PROXY
+      self.user_agent           = DEFAULT_USER_AGENT
+      self.no_response_wrapper  = DEFAULT_NO_RESPONSE_WRAPPER
+      self.loud_logger          = DEFAULT_LOUD_LOGGER
+      self.sign_requests        = DEFAULT_SIGN_REQUESTS
     end
   end
 end
