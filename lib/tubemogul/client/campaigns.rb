@@ -1,4 +1,4 @@
-module TubeMogul
+module TubeMogulAPI
   class Client
     module Campaigns
       def campaigns(advertiser_id = nil,

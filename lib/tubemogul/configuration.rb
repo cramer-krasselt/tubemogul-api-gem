@@ -2,10 +2,10 @@ require 'faraday'
 require 'thread'
 require File.expand_path('../version', __FILE__)
 
-module TubeMogul
+module TubeMogulAPI
   # Defines constants and methods related to configuration
   module Configuration
-    # An array of valid keys in the options hash when configuring a {TubeMogul::API}
+    # An array of valid keys in the options hash when configuring a {TubeMogulAPI::API}
     VALID_OPTIONS_KEYS = [
       :access_mutex,
       :access_expiry,
@@ -83,7 +83,7 @@ module TubeMogul
     DEFAULT_NO_RESPONSE_WRAPPER = false
 
     # The user agent that will be sent to the API endpoint if none is set
-    DEFAULT_USER_AGENT = "TubeMogul Ruby Gem #{TubeMogul::VERSION}".freeze
+    DEFAULT_USER_AGENT = "TubeMogulAPI Ruby Gem #{TubeMogulAPI::VERSION}".freeze
 
     # An array of valid request/response formats
     #

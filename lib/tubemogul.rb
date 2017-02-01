@@ -4,23 +4,23 @@ require File.expand_path('../tubemogul/api', __FILE__)
 require File.expand_path('../tubemogul/client', __FILE__)
 require File.expand_path('../tubemogul/response', __FILE__)
 
-module TubeMogul
+module TubeMogulAPI
   extend Configuration
 
-  # Alias for TubeMogul::Client.new
+  # Alias for TubeMogulAPI::Client.new
   #
-  # @return [TubeMogul::Client]
+  # @return [TubeMogulAPI::Client]
   def self.client(options={})
-    TubeMogul::Client.new(options)
+    TubeMogulAPI::Client.new(options)
   end
 
-  # Delegate to TubeMogul::Client
+  # Delegate to TubeMogulAPI::Client
   def self.method_missing(method, *args, &block)
     return super unless client.respond_to?(method)
     client.send(method, *args, &block)
   end
 
-  # Delegate to TubeMogul::Client
+  # Delegate to TubeMogulAPI::Client
   def self.respond_to?(method, include_all=false)
     return client.respond_to?(method, include_all) || super
   end

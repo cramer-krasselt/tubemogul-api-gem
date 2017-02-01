@@ -1,4 +1,4 @@
-module TubeMogul
+module TubeMogulAPI
   # Defines HTTP request methods
   module OAuth
     # Return URL for OAuth authorization

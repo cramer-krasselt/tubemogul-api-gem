@@ -4,7 +4,7 @@ require 'base64'
 # @private
 module FaradayMiddleware
   # @private
-  class TubeMogulOAuth2 < Faraday::Middleware
+  class TubeMogulAPIOAuth2 < Faraday::Middleware
     def call(env)
 
       # TODO: if @access_token expired, refresh

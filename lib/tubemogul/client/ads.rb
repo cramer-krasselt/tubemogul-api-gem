@@ -1,4 +1,4 @@
-module TubeMogul
+module TubeMogulAPI
   class Client
   	# Defines methods related to Ads
     module Ads

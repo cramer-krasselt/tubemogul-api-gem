@@ -2,7 +2,7 @@ require File.expand_path('../connection', __FILE__)
 require File.expand_path('../request', __FILE__)
 require File.expand_path('../oauth', __FILE__)
 
-module TubeMogul
+module TubeMogulAPI
   # @private
   class API
     # @private
@@ -10,7 +10,7 @@ module TubeMogul
 
     # Creates a new API
     def initialize(options={})
-      options = TubeMogul.options.merge(options)
+      options = TubeMogulAPI.options.merge(options)
       Configuration::VALID_OPTIONS_KEYS.each do |key|
         send("#{key}=", options[key])
       end

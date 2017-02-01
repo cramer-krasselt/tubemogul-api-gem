@@ -2,7 +2,7 @@ require 'openssl'
 require 'base64'
 require 'pry'
 
-module TubeMogul
+module TubeMogulAPI
   # Defines HTTP request methods
   module Request
     # Perform an HTTP GET request

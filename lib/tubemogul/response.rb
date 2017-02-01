@@ -1,4 +1,4 @@
-module TubeMogul
+module TubeMogulAPI
   module Response
     def self.create( response_hash, ratelimit_hash )
       data = response_hash.data.dup rescue response_hash
