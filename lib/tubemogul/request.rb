@@ -30,15 +30,6 @@ module TubeMogulAPI
     # Perform an HTTP request
     def request(method, path, options, signature=false, raw=false, no_response_wrapper=false, signed=sign_requests)
       response = connection(raw).send(method) do |request|
-        if signed == true
-          if client_id != nil
-            sig_options = options.merge({:client_id => client_id})
-          end
-          if access_token != nil
-            sig_options = options.merge({:access_token => access_token})
-          end
-        end
-
         case method
         when :get, :delete
           request.url(URI.encode(path), options)
