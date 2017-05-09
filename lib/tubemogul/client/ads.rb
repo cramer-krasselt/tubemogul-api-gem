@@ -5,7 +5,7 @@ module TubeMogulAPI
       def ad_reporting(ad_id,
                       start_day,
                       end_day,
-                      timezone = Configuration::DEFAULT_TIMEZONE,
+                      timezone = nil,
                       bucketed_by = 'day')
 
         options = { start_day: start_day,

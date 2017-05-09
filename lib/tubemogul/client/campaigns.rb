@@ -28,7 +28,7 @@ module TubeMogulAPI
       def campaign_ads(campaign_id,
                        start_day,
                        end_day,
-                       timezone = Configuration::DEFAULT_TIMEZONE,
+                       timezone = nil,
                        offset = 0,
                        limit = Configuration::DEFAULT_PAGINATION_LIMIT,
                        sort = nil,
