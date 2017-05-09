@@ -2,7 +2,7 @@ require 'faraday'
 require 'base64'
 
 # @private
-module FaradayMiddleware
+module TubeFaradayMiddleware
   # @private
   class TubeMogulAPIOAuth2 < Faraday::Middleware
     def call(env)

@@ -1,7 +1,7 @@
 require 'faraday'
 
 # @private
-module FaradayMiddleware
+module TubeFaradayMiddleware
   # @private
   class RaiseHttpException < Faraday::Middleware
     def call(env)

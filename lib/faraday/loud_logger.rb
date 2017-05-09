@@ -1,7 +1,7 @@
 require 'faraday'
 
 # @private
-module FaradayMiddleware
+module TubeFaradayMiddleware
   # @private
   class LoudLogger < Faraday::Middleware
       extend Forwardable
@@ -30,12 +30,7 @@ module FaradayMiddleware
       private
 
       def filter(output)
-        if ENV['INSTAGRAM_GEM_REDACT']
-          output = output.to_s.gsub(/client_id=[a-zA-Z0-9]*/,'client_id=[CLIENT-ID]')
-          output = output.to_s.gsub(/access_token=[a-zA-Z0-9]*/,'access_token=[ACCESS-TOKEN]')
-        else
-          output
-        end
+        output
       end
 
       def request_info(env)

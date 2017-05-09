@@ -14,7 +14,7 @@ module TubeMogulAPI
       }.merge(connection_options)
 
       Faraday::Connection.new(options) do |connection|
-        connection.use FaradayMiddleware::TubeMogulAPIOAuth2, client_id, client_secret, access_token
+        connection.use TubeFaradayMiddleware::TubeMogulAPIOAuth2, client_id, client_secret, access_token
         connection.use Faraday::Request::UrlEncoded
         connection.use FaradayMiddleware::Mashify unless raw
         unless raw
@@ -22,8 +22,8 @@ module TubeMogulAPI
           when 'json' then connection.use Faraday::Response::ParseJson
           end
         end
-        connection.use FaradayMiddleware::RaiseHttpException
-        connection.use FaradayMiddleware::LoudLogger if loud_logger
+        connection.use TubeFaradayMiddleware::RaiseHttpException
+        connection.use TubeFaradayMiddleware::LoudLogger if loud_logger
         connection.adapter(adapter)
       end
     end
