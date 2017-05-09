@@ -53,7 +53,7 @@ module TubeFaradayMiddleware
     end
 
     def error_message_500(response, body=nil)
-      "#{response[:method].to_s.upcase} #{response[:url].to_s}: #{[response[:status].to_s + ':', body].compact.join(' ')}"
+      "#{response[:method].to_s.upcase} #{response[:url].to_s}: #{[response[:status].to_s + ':', body].compact.join(' ')} (#{response[:body]})"
     end
   end
 end
