@@ -59,7 +59,7 @@ module TubeMogulAPI
 
     TRAFFICKING_API_PREFIX = "v3/"
 
-    REPORTING_API_PREFIX = "v1/"
+    REPORTING_API_PREFIX = "v2/"
 
     DEFAULT_TIMEZONE = 'America/Chicago'
 
