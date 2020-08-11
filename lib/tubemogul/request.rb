@@ -32,9 +32,9 @@ module TubeMogulAPI
       response = connection(raw).send(method) do |request|
         case method
         when :get, :delete
-          request.url(URI.encode(path), options)
+          request.url(CGI.escape(path), options)
         when :post, :put
-          request.path = URI.encode(path)
+          request.url(CGI.escape(path), options)
           request.body = options unless options.empty?
         end
       end
